@@ -304,13 +304,13 @@ $cargo = $datoscargo[0];?>
   <td colspan="4">
   <div class="input-group mb-3">
 <div class="form-check col-md-2">
-  <input class="form-check-input" type="radio" value="Sí" name="flexRadioDefault" id="flexRadioDefault1" onchange="mostrar(this.value);">
+  <input class="form-check-input" type="radio" value="Sí" name="flexRadioDefault" id="flexRadioDefault1" >
   <label class="form-check-label" for="flexRadioDefault">
     Sí
   </label>
 </div>
 <div class="form-check ">
-  <input class="form-check-input" type="radio" value="No" name="flexRadioDefault" id="flexRadioDefault2" onchange="mostrar(this.value);">
+  <input class="form-check-input" type="radio" value="No" name="flexRadioDefault" id="flexRadioDefault2" >
   <label class="form-check-label" for="flexRadioDefault">
     No
   </label>
@@ -323,22 +323,28 @@ $cargo = $datoscargo[0];?>
   <label for="validationCustomNombre" style="display:none;" id="encabezado_persona_firmante">Persona que Firma el Consentimiento</label>
   <div class="input-group mb-3" style="display:none;" id="persona_firmante">
   <div class="form-check col-md-2">
+    <?php $nom = $_SESSION["nombre_repres"]; if($nom == ""){ ?>
   <input class="form-check-input" type="radio" value="Paciente" name="flexRadioFirma" id="flexRadioFirma1" onchange="mostrar2(this.value);">
   <label class="form-check-label" for="flexRadioFirma1">
     Paciente
   </label>
-</div>
-<div class="form-check">
-  <input class="form-check-input" type="radio" value="Representante_Legal" name="flexRadioFirma" id="flexRadioFirma2" onchange="mostrar2(this.value);">
+  </div>
+  <div class="form-check">
+  <?php  }else{ ?>
+    <input class="form-check-input" type="radio" value="Representante_Legal" name="flexRadioFirma" id="flexRadioFirma2" onchange="mostrar2(this.value);">
   <label class="form-check-label" for="flexRadioFirma2">
     Representante legal
   </label>
 </div>
-<div class="form-check" style="display:none;">
+  <?php } ?>
+
+
+  
+<!--<div class="form-check" style="display:none;">
   <input class="form-check-input" type="radio" value="" name="flexRadioFirma" id="flexRadioFirma3" onchange="mostrar2(this.value);" checked>
   <label class="form-check-label" for="flexRadioFirma3">
   </label>
-</div>
+</div>-->
 </div>
   </td>
 </tr>
@@ -362,7 +368,7 @@ $cargo = $datoscargo[0];?>
   <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
   </div>
-    <input type="text" class="form-control" value="" name="nombre_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+    <input type="text" class="form-control" value="<?php echo $_SESSION["nombre_repres"]; ?>" name="nombre_representante" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 </td>
 </tr>
@@ -373,7 +379,7 @@ $cargo = $datoscargo[0];?>
   <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
   </div>
-    <input type="text" class="form-control" value="" name="parentesco_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+    <input type="text" class="form-control" value="<?php echo $_SESSION["parentesco_repres"]; ?>" name="parentesco_representante" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 </td>
 </tr>
@@ -384,7 +390,7 @@ $cargo = $datoscargo[0];?>
   <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-address-card"></i></span>
   </div>
-    <input type="text" class="form-control" value="" name="documento_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+    <input type="text" class="form-control" value="<?php echo $_SESSION["documento_repres"]; ?>" name="documento_representante" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 </td>
 </tr>

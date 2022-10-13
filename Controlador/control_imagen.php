@@ -3,10 +3,17 @@ session_start();
 if (!isset($_SESSION["usuario"])) {
   header("location:../index.php");
 }
-
+$_SESSION["nombre_repres"] = "";
+$_SESSION["parentesco_repres"] = "";
+$_SESSION["documento_repres"] = "";
 $id_cita = $_GET["id_cita"];
 $cod_examen = $_GET["cod_examen"];
-
+$nombre_repres= $_POST["nombre_representante"];
+$_SESSION["nombre_repres"] = $nombre_repres;
+$parentesco_repres= $_POST["parentesco_representante"];
+$_SESSION["parentesco_repres"] = $parentesco_repres;
+$documento_repres= $_POST["documento_representante"];
+$_SESSION["documento_repres"] = $documento_repres;
 if (isset($_POST['imagen'])) { 
 
     // mostrar la imagen
@@ -26,7 +33,7 @@ if (isset($_POST['imagen'])) {
         }
         else{
             // retorno si todo fue bien
-            header("location:../ver_consentimientos.php?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen);
+            header("location:../ver_consentimientos.php?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen . "&historial=false");
             return true;
         }
     }
@@ -35,5 +42,5 @@ if (isset($_POST['imagen'])) {
     uploadImgBase64($_POST['imagen'], 'firma_paciente_temp.png' );
     }
 
-    header("location:../ver_consentimientos.php?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen);
+    header("location:../ver_consentimientos.php?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen . "&historial=false");
 ?>

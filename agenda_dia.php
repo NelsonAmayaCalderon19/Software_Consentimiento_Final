@@ -84,13 +84,13 @@ $consulta = "SELECT * FROM cita where fecha = curdate() order by hora ASC";
                         <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">
                             <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div></td>
-                          <td class="text-center"><a class="btn btn-success" title="Asistió" href="<?php echo "ver_consentimientos.php?id_cita=" . $row['id_cita'] ."&cod_examen=" . $row['cod_examen'] ?>"><span class="fa fa-check" style="color: white;"></span></a>
+                          <td class="text-center"><a class="btn btn-success" title="Asistió" href="<?php echo "ver_consentimientos.php?id_cita=" . $row['id_cita'] ."&cod_examen=" . $row['cod_examen']. "&historial=false" ?>"><span class="fa fa-check" style="color: white;"></span></a>
                         <a class="btn btn-danger" title="No Asistió" href="javascript:;" onclick="aviso('Controlador/Cita_No_Asistida.php?id_cita= <?php echo $row['id_cita'] ?>'); return false;"><span class="fa fa-close" style="color: white;"></span></a></td>
                         <?php elseif($row['id_estado']==4):?>
                           <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">
                             <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div></td>
-                          <td class="text-center"><a class="btn btn-primary" title="Ver Detalles" href="<?php echo "ver_consentimientos.php?id_cita=" . $row['id_cita'] ."&cod_examen=" . $row['cod_examen'] ?>"><span class="fa fa-eye" style="color: white;" disabled></span></a>
+                          <td class="text-center"><a class="btn btn-primary" title="Ver Detalles" href="<?php echo "ver_consentimientos.php?id_cita=" . $row['id_cita'] ."&cod_examen=" . $row['cod_examen']. "&historial=false" ?>"><span class="fa fa-eye" style="color: white;" disabled></span></a>
                        </td>
                           <?php else:?>
                             <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">

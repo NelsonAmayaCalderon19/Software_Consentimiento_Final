@@ -67,7 +67,7 @@ if($_POST["flexRadioDefault"] == "Sí"){
     $templateWord->setValue('ace',"X");
     $templateWord->setValue('rec',"");
     $id_estado="7";
-    if($_POST["flexRadioFirma"]=="Paciente"){
+    if($nombre_representante == ""){
     $templateWord->setImageValue('firma_paciente_acepta', array('src' => '../firma_paciente_temp/firma_paciente_temp.png','swh'=>'250'));
     $templateWord->setValue('cedula_paciente',$documento);
     $templateWord->setValue('firma_representante',"");
@@ -80,7 +80,7 @@ if($_POST["flexRadioDefault"] == "Sí"){
     $templateWord->setValue('rec',"X");
     $templateWord->setValue('ace',"");
     $id_estado="8";
-    if($_POST["flexRadioFirma"]=="Paciente"){
+    if($nombre_representante == ""){
       $templateWord->setImageValue('firma_paciente_acepta', array('src' => '../firma_paciente_temp/firma_paciente_temp.png','swh'=>'250'));
       $templateWord->setValue('cedula_paciente',$documento);
       $templateWord->setValue('firma_representante',"");
@@ -112,7 +112,7 @@ $consentimiento->Actualizar_Estado_Cita($id_cita);
       //echo $ruta." ".$nombre_paciente." ".$apellido_paciente." ".$tipo_documento." ".$documento." ".$aseguradora." ".$regimen;
       /*echo $nombre_paciente;
       echo $apellido_paciente;*/
-      header("location:../ver_consentimientos.php"  . "?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen);
+      header("location:../ver_consentimientos.php"  . "?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen ."&historial=false");
       unlink('../formatos/Plantilla/'. $ruta);
       }if(filter_input(INPUT_POST, 'btnConfirmar')){
       $ruta = $consentimiento->Consultar_Archivo_Consentimiento($id_consentimiento);
@@ -317,9 +317,11 @@ $archivo_binario = (file_get_contents('../formatos/Plantilla/'. $ruta));
 $consentimiento->Actualizar_Cita_Consentimiento($id_cita,$id_consentimiento,$id_estado,$archivo_binario);
 $validarConsentCita=$consentimiento->Validar_Consentimientos_Cita_Firmados($id_cita);
 if($validarConsentCita=="0"){
+  array_map('unlink', array_filter(
+    (array) array_merge(glob("../firma_paciente_temp/*"))));
 $consentimiento->Actualizar_Estado_Cita($id_cita);
 }
-      header("location:../ver_consentimientos.php"  . "?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen ."&firma=1");
+      header("location:../ver_consentimientos.php"  . "?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen ."&historial=false");
     
     }
 ?>

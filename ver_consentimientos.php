@@ -36,7 +36,7 @@ $id_cita = $_GET["id_cita"];
 $cod_examen = $_GET["cod_examen"];
 $historial = $_GET["historial"];
 ?>
-<div class="container-fluid col-11 mx-auto" style="margin-top: 15px;">
+<div class="container-fluid col-11 mx-auto" style="margin-top: 65px;">
 <div class="row">
               <div class="row col-sm-12 text-left mb-2 d-flex">
               <div class="col-sm-12 text-secondary"><h4>Solicite la Firma al Paciente/Representante Legal</h4></div>
@@ -164,7 +164,7 @@ $consulta = "SELECT * FROM cita_consent where id_cita = $id_cita";
                     <tr>
                         <td class="text-center"><?php echo $row['id_cita']; ?></td>
                         <td class="text-center"><?php $cod = $row['cod_consentimiento']; echo $consentimiento->Consultar_Nombre_Consentimiento($cod); ?></td>
-                        <?php if($row['id_estado']==6):?>
+                        <?php if($row['id_estado']==6 && $historial == "false"):?>
                         <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">
                             <div class="progress-bar bg-secondary" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div></td> 
@@ -174,11 +174,16 @@ $consulta = "SELECT * FROM cita_consent where id_cita = $id_cita";
                             <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div></td>
                           <td class="text-center"><a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?id_cita=" . $row['id_cita'] ."&cod_consentimiento=" . $row['cod_consentimiento'] . "&cod_examen=" . $cod_examen ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a></td>
-                          <?php else:?>
+                          <?php elseif($row['id_estado']==8):?>
                             <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">
                             <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                           </div></td>
                           <td class="text-center"><a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?id_cita=" . $row['id_cita'] ."&cod_consentimiento=" . $row['cod_consentimiento'] . "&cod_examen=" . $cod_examen ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a></td>
+                          <?php elseif($row['id_estado']==6 && $historial == "true"):?>
+                            <td class="text-center"><?php $id = $row['id_estado']; echo $estado->Consultar_Estado_Por_ID($id);?><br><div class="progress progress-sm">
+                            <div class="progress-bar bg-primary" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div></td>
+                          <td class="text-center">En Proceso</td>                        
                           <?php endif;?>
                         
                     </tr>  
