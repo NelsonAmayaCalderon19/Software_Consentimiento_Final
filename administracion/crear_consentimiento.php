@@ -56,7 +56,7 @@ $consul_examen = "SELECT * FROM examen";
   <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-address-card"></i></label>
   </div>
-         <select class="custom-select" id="validationCustomSelect" name="selectexamen" aria-describedby="inputGroupPrepend" required>
+         <select class="custom-select" id="validationCustomSelect" name="selectexamen[]" aria-describedby="inputGroupPrepend" multiple required>
          <?php foreach ($conexion->query($consul_examen) as $row) { ?>
                         <option value="<?php echo $row['codigo']; ?>"><?php echo $row['descripcion'];?></option>
                         <?php } ?>   

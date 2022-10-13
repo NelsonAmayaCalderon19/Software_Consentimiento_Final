@@ -876,7 +876,7 @@ Firma Paciente o Representante Legal
   <tbody>
     <tr>
     <td><div class="form-group row">
-    <label for="medicamento1" class="col-sm-2 col-form-label">Medicamento:</label>
+    <label for="medicamento1" class="col-sm-3 col-form-label">Medicamento:</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="medicamento1" name="medicamento1">
     </div></td>
@@ -891,7 +891,7 @@ Firma Paciente o Representante Legal
     </tr>
     <tr>
     <td><div class="form-group row">
-    <label for="medicamento2" class="col-sm-2 col-form-label">Medicamento:</label>
+    <label for="medicamento2" class="col-sm-3 col-form-label">Medicamento:</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="medicamento2" name="medicamento2">
     </div></td>
@@ -906,7 +906,7 @@ Firma Paciente o Representante Legal
     </tr>
     <tr>
     <td><div class="form-group row">
-    <label for="medicamento3" class="col-sm-2 col-form-label">Medicamento:</label>
+    <label for="medicamento3" class="col-sm-3 col-form-label">Medicamento:</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="medicamento3" name="medicamento3">
     </div></td>
@@ -921,7 +921,7 @@ Firma Paciente o Representante Legal
     </tr>
     <tr>
     <td><div class="form-group row">
-    <label for="medicamento4" class="col-sm-2 col-form-label">Medicamento:</label>
+    <label for="medicamento4" class="col-sm-3 col-form-label">Medicamento:</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="medicamento4" name="medicamento4">
     </div></td>
@@ -936,7 +936,7 @@ Firma Paciente o Representante Legal
     </tr>
     <tr>
     <td><div class="form-group row">
-    <label for="medicamento5" class="col-sm-2 col-form-label">Medicamento:</label>
+    <label for="medicamento5" class="col-sm-3 col-form-label">Medicamento:</label>
     <div class="col-sm-6">
       <input type="text" class="form-control" id="medicamento5" name="medicamento5">
     </div></td>

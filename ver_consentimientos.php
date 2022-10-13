@@ -34,17 +34,19 @@ include_once 'modelo/Cita.php';
 $citam = new Cita(); 
 $id_cita = $_GET["id_cita"];
 $cod_examen = $_GET["cod_examen"];
-
+$historial = $_GET["historial"];
 ?>
-<div class="container-fluid col-11 mx-auto" style="margin-top: 65px;">
+<div class="container-fluid col-11 mx-auto" style="margin-top: 15px;">
 <div class="row">
-              <div class="row col-sm-12 text-left mb-3 d-flex">
-              <div class="col-sm-12 text-secondary"><h4>Formularios de Consentimiento a Diligenciar</h4></div>
-              <div class="col-sm-12 text-right mb-3">
+              <div class="row col-sm-12 text-left mb-2 d-flex">
+              <div class="col-sm-12 text-secondary"><h4>Solicite la Firma al Paciente/Representante Legal</h4></div>
+</div>
+<div class="row col-sm-12 text-left mb-3 d-flex">
+              <div class="col-sm-12 text-center mb-3">
                   <?php 
                  $estado_cita = $citam->Consultar_Estado_cita($id_cita);
                  if($estado_cita=="3"){
-                   if(@file_get_contents('firma_paciente_temp/firma_paciente_temp.png')){
+                   if(@file_get_contents('firma_paciente_temp/firma_paciente_temp.png') || $historial=="true"){
                     
                     }else{?>
    <div id="canva">
@@ -52,15 +54,62 @@ $cod_examen = $_GET["cod_examen"];
        <p>Tu navegador no soporta canvas</p>
    </canvas>
    <firma id="firma"></firma>
-   <signature></signature>
+   <signature></signature><br>
    
    <!-- creamos el form para el envio -->
    <form id='formCanvas' method='post' action="Controlador/control_imagen.php?id_cita=<?php echo $id_cita?>&cod_examen=<?php echo $cod_examen?>&firma=1" ENCTYPE='multipart/form-data'>
-     <button type='button' onclick='LimpiarTrazado()'>Borrar</button>
+     <button class="btn btn-warning" type='button' onclick='LimpiarTrazado()'>Limpiar</button>
        <!--<button type="button" onclick='GuardarTrazado()'>Guardar</button>-->
-       <input class="btn btn-success btn-acepta" type="submit" name="btnAcepta" onclick='GuardarTrazado()' value="Aceptar" /> 
-   
+       
        <input type='hidden' name='imagen' id='imagen' />
+       <br>
+       <h2>En Caso de Ser firmado por el Representante Legal, complete los siguientes campos</h2>
+<div class="container-fluid col-12" style="" id="firma_representante">
+<table class="table border representante_legal">
+<thead class="thead-light">
+<tr>
+      <th class="text-center" >DATOS DEL REPRESENTANTE LEGAL</th>
+    </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>
+    <label for="validationCustomNombre">Nombre <span style="color:red;">(*)</span></label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+  </div>
+    <input type="text" class="form-control" value="" name="nombre_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+</div>
+</td>
+</tr>
+<tr>
+    <td>
+    <label for="validationCustomNombre">Parentesco <span style="color:red;">(*)</span></label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+  </div>
+    <input type="text" class="form-control" value="" name="parentesco_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+</div>
+</td>
+</tr>
+<tr>
+    <td>
+    <label for="validationCustomNombre">Numero de Documento de Identidad <span style="color:red;">(*)</span></label>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-address-card"></i></span>
+  </div>
+    <input type="text" class="form-control" value="" name="documento_representante" id="validationCustomNombre" aria-describedby="basic-addon3">
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<input class="btn btn-success btn-acepta" type="submit" name="btnAcepta" onclick='GuardarTrazado()' value="Aceptar" /> 
+   
                      </form>
      </div>
      
@@ -145,7 +194,11 @@ $consulta = "SELECT * FROM cita_consent where id_cita = $id_cita";
 </div>
 <div class="col-12 text-left row">
 <div class="col-6 text-left mb-3">
-<a class="btn btn-primary" href="principal.php" role="button">Volver</a>
+  <?php if($historial=="true"){?>
+<a class="btn btn-primary" href="historial_citas.php" role="button">Volver</a>
+<?php }else {?>
+  <a class="btn btn-primary" href="principal.php" role="button">Volver</a>
+<?php }?>
                           </div>
                           <!--<div class="col-6 text-right mb-3">
 <a class="btn btn-danger" href="" role="button">No Asistió</a>

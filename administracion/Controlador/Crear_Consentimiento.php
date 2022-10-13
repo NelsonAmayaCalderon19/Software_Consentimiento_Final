@@ -25,8 +25,10 @@ $codigo = $_POST["codigo_consentimiento"];
 $descripcion = "FORMATO DE CONSENTIMIENTO INFORMADO DE " . $_POST["nombre_procedimiento"];
 $ruta_archivo = $codigo . " " . $descripcion . ".docx";
 $consentimiento -> Guardar_Consentimiento($codigo,$descripcion,$ruta_archivo);
-$consentimiento -> Guardar_Consentimiento_Examen($miSelectExamen,$codigo);
-
+for ($i=0;$i<count($miSelectExamen);$i++)    
+{
+$consentimiento -> Guardar_Consentimiento_Examen($miSelectExamen[$i],$codigo);
+}
 $nombre = $_POST['nombre_procedimiento'];
 $objetivo = $_POST['objetivo'];
 $descripcion = $_POST['descripcion'];
