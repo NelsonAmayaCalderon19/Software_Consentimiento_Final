@@ -39,9 +39,11 @@
             <div class="col-sm-12 card-body">
             <?php 
 include_once '../Conexion/Conexion.php';
+include_once '../modelo/Estado.php';
+$id_estado = new Estado();
 $conexion = new conexion();
 $conexion = $conexion->connect(); 
-$consulta = "SELECT * FROM consentimiento";
+$consulta = "SELECT SUBSTRING(ruta_archivo,1,25) ruta_archivo,codigo,descripcion,id_estado FROM consentimiento";
 
 
 ?>
@@ -52,6 +54,7 @@ $consulta = "SELECT * FROM consentimiento";
                         <th class="text-center">CODIGO</th>
                         <th class="text-center">DESCRIPCION</th>
                         <th class="text-center">RUTA_ARCHIVO</th>
+                        <th class="text-center">ESTADO</th>
                         <th class="text-center">ACCION</th>
                     </tr>
                 </thead>
@@ -60,8 +63,25 @@ $consulta = "SELECT * FROM consentimiento";
                     <tr>
                         <td class="text-center"><?php echo $row['codigo']; ?></td>
                         <td class="text-center"><?php echo $row['descripcion']; ?></td>
-                        <td class="text-center"><?php echo $row['ruta_archivo']; ?></td>
-                        <td class="text-center"><a class="btn btn-success" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a></td>
+                        <td class="text-center"><?php echo $row['ruta_archivo']."..."; ?></td>
+                        <?php $estado = $id_estado->Consultar_Estado_Por_ID($row['id_estado']); ?>
+                        <?php if($row['id_estado'] == 1):?>
+                          <td class="text-center"><?php echo $estado;?><br><div class="progress progress-sm">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div></td>
+                        <td class="text-center">
+                        <a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a>
+                        <a class="btn btn-danger" title="Deshabilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>" target="_blank"><span class="fa fa-minus-circle" style="color: white;"></span></a>                     
+                      </td>
+                      <?php elseif($row['id_estado'] == 2):?>
+                        <td class="text-center"><?php echo $estado;?><br><div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div></td>
+                        <td class="text-center">
+                        <a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a>
+                        <a class="btn btn-success" title="Habilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>" target="_blank"><span class="fa fa-check-circle" style="color: white;"></span></a>                     
+                      </td>
+                        <?php endif;?>
                     </tr>  
                     <?php } ?>   
                 </tbody>

@@ -7,12 +7,14 @@
 <?php
 include_once '../Conexion/Conexion.php'; 
 include_once '../modelo/Cita.php';
+include_once '../modelo/Consentimiento.php';
 include_once '../js/script_sweet.js';
 
 
 $conexion = new conexion();
 $conexion = $conexion->connect();
 $cita = new Cita();
+$consent = new Consentimiento();
 $cod_examen;
 if(filter_input(INPUT_POST, 'btnCargar')){
     $archivo_nombre=$_FILES['archivo']['name'];
@@ -56,8 +58,11 @@ if(filter_input(INPUT_POST, 'btnCargar')){
         $results = $result -> fetchAll();
         $dir = array();
         $cont = 0;
-        foreach($results as $fila):         
+        foreach($results as $fila):   
+          $estad = $consent->Consultar_Estado_Consentimiento($fila["cod_consentimiento"]);
+          if($estad=="1") {
           $cita->Agregar_Consentimiento_Cita($cod,$fila["cod_consentimiento"],6);
+          }
         endforeach;
         }if($cita){
           

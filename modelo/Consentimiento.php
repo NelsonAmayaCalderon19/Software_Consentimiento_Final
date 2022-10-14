@@ -42,6 +42,20 @@ endforeach;
     return $nombre;
     }
 
+    public function Consultar_Estado_Consentimiento($codigo){
+        $sq="SELECT * FROM consentimiento as cons WHERE cons.codigo= :codigo";
+$result=$this->conexion->prepare($sq);
+$result->execute(array(
+    ':codigo' =>"".$codigo.""
+  ));
+$results = $result -> fetchAll();
+
+foreach($results as $fila):
+        $estado = $fila["id_estado"];
+endforeach;
+    return $estado;
+    }
+
     public function Consultar_Formulario_Consentimiento($codigo){
         $sq="SELECT * FROM consentimiento as cons WHERE cons.codigo= :codigo";
 $result=$this->conexion->prepare($sq);

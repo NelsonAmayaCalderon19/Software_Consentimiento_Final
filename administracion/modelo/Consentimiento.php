@@ -89,5 +89,15 @@ class Consentimiento extends conexion{
     endforeach;
     return $dir;
     }
+
+    public function InActivar_Consentimiento($codigo,$id_estado){
+        $sq ="UPDATE consentimiento SET id_estado=:id_estado WHERE codigo= :codigo";
+        $result=$this->conexion->prepare($sq);
+        $result->execute(array(
+            ':id_estado' =>"".$id_estado."",
+            ':codigo' =>"".$codigo.""
+          ));
+          return $result->rowCount();
+    }
 }
 ?>
