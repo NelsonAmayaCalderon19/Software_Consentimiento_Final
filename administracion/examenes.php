@@ -52,6 +52,7 @@ $consulta = "SELECT * FROM examen";
                     <tr>
                         <th class="text-center">CODIGO</th>
                         <th class="text-center">NOMBRE</th>
+                        <th class="text-center">OPCIONES</th>
                        
                     </tr>
                 </thead>
@@ -60,7 +61,8 @@ $consulta = "SELECT * FROM examen";
                     <tr>
                         <td class="text-center"><?php echo $row['codigo']; ?></td>
                         <td class="text-center"><?php echo $row['descripcion']; ?></td>
-                        
+                        <td class="text-center">
+                        <a class="btn btn-warning" title="Ver Información" href="<?php echo "informacion_examen.php?cod_examen=" . $row['codigo'] ?>"><span class="fa fa-eye" style="color: white;"></span></a> </td>
                         
                     </tr>  
                     <?php } ?>   
