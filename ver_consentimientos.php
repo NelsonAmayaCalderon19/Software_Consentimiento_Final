@@ -24,7 +24,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
 <?php include "includes/header.php";?>
@@ -54,17 +54,21 @@ $historial = $_GET["historial"];
        <p>Tu navegador no soporta canvas</p>
    </canvas>
    <firma id="firma"></firma>
-   <signature></signature><br>
-   
-   <!-- creamos el form para el envio -->
+   <signature></signature>
+ 
    <form id='formCanvas' method='post' action="Controlador/control_imagen.php?id_cita=<?php echo $id_cita?>&cod_examen=<?php echo $cod_examen?>&firma=1" ENCTYPE='multipart/form-data'>
      <button class="btn btn-warning" type='button' onclick='LimpiarTrazado()'>Limpiar</button>
-       <!--<button type="button" onclick='GuardarTrazado()'>Guardar</button>-->
        
        <input type='hidden' name='imagen' id='imagen' />
        <br>
-       <h2>En Caso de Ser firmado por el Representante Legal, complete los siguientes campos</h2>
-<div class="container-fluid col-12" style="" id="firma_representante">
+       <h2>Seleccione el Usuario que Firma</h2>
+       <input type="radio" class="btn-check" name="options" id="option1" value="Paciente" autocomplete="off" onchange="mostrar(this.value);">
+<label class="btn btn-primary" for="option1">Paciente</label>
+
+<input type="radio" class="btn-check" name="options" id="option2" value="Representante Legal" autocomplete="off" onchange="mostrar(this.value);">
+<label class="btn btn-primary" for="option2">Representante Legal</label>
+
+<div class="container-fluid col-12" style="display:none;" id="firma_representante">
 <table class="table border representante_legal">
 <thead class="thead-light">
 <tr>
@@ -107,7 +111,7 @@ $historial = $_GET["historial"];
 </tr>
 </tbody>
 </table>
-</div>
+</div><br>
 <input class="btn btn-success btn-acepta" type="submit" name="btnAcepta" onclick='GuardarTrazado()' value="Aceptar" /> 
    
                      </form>
@@ -385,6 +389,23 @@ var table = $('#minhatabela').DataTable( {
       document.forms[idForm].submit();
     }
 </script>
+<script>
+$(document).ready(function() {
+          
+          $("#success-alert").fadeTo(2000, 500).slideUp(500, function() {
+      $("#success-alert").slideUp(500);
+    });
+      });
+
+      function mostrar(dato) {
+        
+  if (dato == "Representante Legal") {
+    document.getElementById("firma_representante").style.display = "block";
+  }else if(dato == "Paciente"){
+    document.getElementById("firma_representante").style.display = "none";
+  }
+}
+  </script>
 </body>
 </html>
 
