@@ -95,12 +95,9 @@ $consulta = "SELECT SUBSTRING(ruta_archivo,1,25) ruta_archivo,codigo,descripcion
 <div class="col-12 text-left row">
 <div class="col-6 text-left mb-3">
 
-  <a class="btn btn-primary" href="examenes.php" role="button">Volver</a>
+  <a class="btn btn-warning" href="examenes.php" role="button">Volver</a>
 
                           </div>
-                          <!--<div class="col-6 text-right mb-3">
-<a class="btn btn-danger" href="" role="button">No Asistió</a>
-              </div>-->
                           </div> 
 </div>
 <script src="vendor2/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -115,9 +112,6 @@ $consulta = "SELECT SUBSTRING(ruta_archivo,1,25) ruta_archivo,codigo,descripcion
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script> 
     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
-  <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
   <?php include "includes/footer.php";?>
 <script type="text/javascript" language="javascript" >
 $(document).ready(function() {

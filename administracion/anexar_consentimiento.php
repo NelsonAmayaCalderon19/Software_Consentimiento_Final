@@ -37,13 +37,13 @@ $cod_examen = $_GET['cod_examen'];
               <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-pencil-square-o"></i> Ingresar Información</h6>
             </div>
             <div class="col-sm-12 card-body">
-            <form method="post" action="Controlador/Agregar_Examen.php">
-            <label for="validationCustomNombre">Examen <span style="color:red;">(*)</span></label>
+            <form method="post" action="Controlador/Anexar_Consentimiento_Examen.php">
+            <label for="validationCustomNombre">Codigo Examen <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
-      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-code"></i></span>
   </div>
-    <input type="text" class="form-control" value="<?php echo $cod_examen; ?>" name="nombre_examen" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
+    <input type="text" class="form-control" value="<?php echo $cod_examen; ?>" name="codigo_examen" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 <?php $listar_consentimientos = "select con.codigo,con.descripcion from consentimiento as con where not exists (select * from consent_examen as conexam where con.codigo=conexam.cod_consentimiento and conexam.cod_examen =$cod_examen)";?>
 <label for="validationCustomResponsable">Seleccione los consentimientos Relacionados con el Examen <span style="color:red;">(*)</span></label>
@@ -71,7 +71,6 @@ $cod_examen = $_GET['cod_examen'];
 <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
-    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 <?php include "includes/footer.php";?>
 </body>
 </html>
