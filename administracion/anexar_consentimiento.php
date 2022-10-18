@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css"/>
 
-    <title>Registrar Examen</title>
+    <title>Anexar Consentimiento</title>
     <?php
 session_start();
   if (!isset($_SESSION["usuario"])) {
@@ -27,6 +27,7 @@ session_start();
       include_once '../Conexion/Conexion.php'; 
       $conexion = new conexion();
 $conexion = $conexion->connect(); 
+$cod_examen = $_GET['cod_examen'];
       ?>
 <?php include "includes/header.php";?>
 <div class="container-fluid col-11 mx-auto" style="margin-top: 60px;">
@@ -37,25 +38,27 @@ $conexion = $conexion->connect();
             </div>
             <div class="col-sm-12 card-body">
             <form method="post" action="Controlador/Agregar_Examen.php">
-            <label for="validationCustomNombre">Nombre del Examen <span style="color:red;">(*)</span></label>
+            <label for="validationCustomNombre">Examen <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
   </div>
-    <input type="text" class="form-control" value="" name="nombre_examen" id="validationCustomNombre" aria-describedby="basic-addon3">
+    <input type="text" class="form-control" value="<?php echo $cod_examen; ?>" name="nombre_examen" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
-<?php $listar_consentimientos = "SELECT * FROM consentimiento where id_estado=1";?>
+<?php $listar_consentimientos = "select con.codigo,con.descripcion from consentimiento as con where not exists (select * from consent_examen as conexam where con.codigo=conexam.cod_consentimiento and conexam.cod_examen =$cod_examen)";?>
 <label for="validationCustomResponsable">Seleccione los consentimientos Relacionados con el Examen <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
 <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-files-o"></i></span>
   </div>
     <select class="custom-select" id="validationCustomResponsable" name="selectconsentimiento[]" aria-describedby="inputGroupPrepend" multiple required=""> 
+    <option value="" disabled>Seleccione los Consentimientos Disponibles</option>
     <?php foreach ($conexion->query($listar_consentimientos) as $row) { ?>
     <option value="<?php echo $row['codigo']; ?>"><?php echo $row['descripcion']; ?></option>
                                 <?php }?>
   </select></div>
-  <div class="col-12 text-center justify-content-center row">
+  <div class="col-12 text-center justify-content-center row ">
+  <a class="btn btn-warning mr-2" href="informacion_examen.php?cod_examen=<?php echo $cod_examen; ?>">Cancelar</a>
 <input class="btn btn-success btn-acepta" type="submit" name="btnAcepta" value="Aceptar" /> 
     
                           </div>

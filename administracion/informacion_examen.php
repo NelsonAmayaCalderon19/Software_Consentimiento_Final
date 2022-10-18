@@ -32,6 +32,9 @@ session_start();
 <div class="container-fluid col-11 mx-auto" style="margin-top: 65px;">
 <div class="row">
 <div class="row col-sm-12 text-left mb-3 d-flex">
+<div class="col-sm-12 text-right mb-3">
+                  <a class="btn btn-primary" href="anexar_consentimiento.php?cod_examen=<?php echo $_GET['cod_examen']; ?>">Anexar Consentimiento</a>
+              </div>
 <div class="col-sm-12 card shadow mb-3">
 <div class="card-header py-3">
               <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-address-book-o"></i> Consentimientos Informados Requeridos</h6>
