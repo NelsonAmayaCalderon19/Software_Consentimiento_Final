@@ -44,7 +44,7 @@ $conexion = $conexion->connect();
   </div>
     <input type="text" class="form-control" value="" name="nombre_examen" id="validationCustomNombre" aria-describedby="basic-addon3">
 </div>
-<?php $listar_consentimientos = "SELECT * FROM consentimiento";?>
+<?php $listar_consentimientos = "SELECT * FROM consentimiento where id_estado=1";?>
 <label for="validationCustomResponsable">Seleccione los consentimientos Relacionados con el Examen <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
 <div class="input-group-prepend">

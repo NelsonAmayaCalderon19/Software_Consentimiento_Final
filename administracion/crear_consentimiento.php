@@ -29,7 +29,7 @@
 include_once '../Conexion/Conexion.php';
 $conexion = new conexion();
 $conexion = $conexion->connect(); 
-$consul_examen = "SELECT * FROM examen";
+$consul_examen = "SELECT * FROM examen where id_estado=1";
 ?>
     </head>
     <body>
