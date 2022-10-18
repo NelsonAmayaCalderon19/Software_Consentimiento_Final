@@ -51,5 +51,15 @@ endforeach;
 
     }
 
+    public function InActivar_Examen($codigo,$id_estado){
+        $sq ="UPDATE examen SET id_estado=:id_estado WHERE codigo= :codigo";
+        $result=$this->conexion->prepare($sq);
+        $result->execute(array(
+            ':id_estado' =>"".$id_estado."",
+            ':codigo' =>"".$codigo.""
+          ));
+          return $result->rowCount();
+    }
+
 }
 ?>
