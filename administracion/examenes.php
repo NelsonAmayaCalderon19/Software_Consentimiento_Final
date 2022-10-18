@@ -61,9 +61,18 @@ $consulta = "SELECT * FROM examen";
                     <tr>
                         <td class="text-center"><?php echo $row['codigo']; ?></td>
                         <td class="text-center"><?php echo $row['descripcion']; ?></td>
+                    
+                        <?php if($row['id_estado'] == 1):?>                       
                         <td class="text-center">
-                        <a class="btn btn-warning" title="Ver Información" href="<?php echo "informacion_examen.php?cod_examen=" . $row['codigo'] ?>"><span class="fa fa-eye" style="color: white;"></span></a> </td>
-                        
+                        <a class="btn btn-warning" title="Ver Información" href="<?php echo "informacion_examen.php?cod_examen=" . $row['codigo'] ?>"><span class="fa fa-eye" style="color: white;"></span></a>
+                        <a class="btn btn-danger" title="Deshabilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>"><span class="fa fa-minus-circle" style="color: white;"></span></a>                     
+                      </td>
+                      <?php elseif($row['id_estado'] == 2):?>                        
+                        <td class="text-center">
+                        <a class="btn btn-warning" title="Ver Información" href="<?php echo "informacion_examen.php?cod_examen=" . $row['codigo'] ?>"><span class="fa fa-eye" style="color: white;"></span></a>
+                        <a class="btn btn-success" title="Habilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>"><span class="fa fa-check-circle" style="color: white;"></span></a>                     
+                      </td>
+                        <?php endif;?>
                     </tr>  
                     <?php } ?>   
                 </tbody>

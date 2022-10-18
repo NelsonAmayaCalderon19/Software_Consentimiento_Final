@@ -32,9 +32,73 @@ session_start();
 <div class="container-fluid col-11 mx-auto" style="margin-top: 65px;">
 <div class="row">
 <div class="row col-sm-12 text-left mb-3 d-flex">
+<div class="col-sm-12 card shadow mb-3">
+<div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary"><i class="fa fa-address-book-o"></i> Consentimientos Informados Requeridos</h6>
+            </div>
+            <div class="col-sm-12 card-body">
+            <?php 
+include_once '../Conexion/Conexion.php';
+include_once '../modelo/Estado.php';
+$cod_examen = $_GET['cod_examen'];
+$id_estado = new Estado();
+$conexion = new conexion();
+$conexion = $conexion->connect(); 
+$consulta = "SELECT SUBSTRING(ruta_archivo,1,25) ruta_archivo,codigo,descripcion,id_estado FROM consentimiento as con, consent_examen as conexam where con.codigo=conexam.cod_consentimiento and conexam.cod_examen = $cod_examen";
+?>
+<table id="minhatabela" class="display responsive table table-striped table-bordered table-hover" cellspacing="0" width="100%">
+                <br>
+                <thead>
+                    <tr>
+                        <th class="text-center">CODIGO</th>
+                        <th class="text-center">DESCRIPCION</th>
+                        <th class="text-center">RUTA_ARCHIVO</th>
+                        <th class="text-center">ESTADO</th>
+                        <th class="text-center">ACCION</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                    <?php foreach ($conexion->query($consulta) as $row) { ?>
+                    <tr>
+                        <td class="text-center"><?php echo $row['codigo']; ?></td>
+                        <td class="text-center"><?php echo $row['descripcion']; ?></td>
+                        <td class="text-center"><?php echo $row['ruta_archivo']."..."; ?></td>
+                        <?php $estado = $id_estado->Consultar_Estado_Por_ID($row['id_estado']); ?>
+                        <?php if($row['id_estado'] == 1):?>
+                          <td class="text-center"><?php echo $estado;?><br><div class="progress progress-sm">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div></td>
+                        <td class="text-center">
+                        <a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a>
+                        <a class="btn btn-danger" title="Deshabilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>"><span class="fa fa-minus-circle" style="color: white;"></span></a>                     
+                      </td>
+                      <?php elseif($row['id_estado'] == 2):?>
+                        <td class="text-center"><?php echo $estado;?><br><div class="progress progress-sm">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div></td>
+                        <td class="text-center">
+                        <a class="btn btn-primary" title="Descargar" href="<?php echo "Controlador/Descargar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ?>" target="_blank"><span class="fa fa-download" style="color: white;"></span></a>
+                        <a class="btn btn-success" title="Habilitar" href="<?php echo "Controlador/Desactivar_Consentimiento.php?cod_consentimiento=" . $row['codigo'] ."&id_estado=" . $row['id_estado'] ?>"><span class="fa fa-check-circle" style="color: white;"></span></a>                     
+                      </td>
+                        <?php endif;?>
+                    </tr>  
+                    <?php } ?>   
+                </tbody>
+            </table>
+ 
+</div>
+</div>
+</div>
+<div class="col-12 text-left row">
+<div class="col-6 text-left mb-3">
 
-</div>
-</div>
+  <a class="btn btn-primary" href="examenes.php" role="button">Volver</a>
+
+                          </div>
+                          <!--<div class="col-6 text-right mb-3">
+<a class="btn btn-danger" href="" role="button">No Asistió</a>
+              </div>-->
+                          </div> 
 </div>
 <script src="vendor2/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor2/jquery-easing/jquery.easing.min.js"></script>
@@ -53,7 +117,45 @@ session_start();
   <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
   <?php include "includes/footer.php";?>
 <script type="text/javascript" language="javascript" >
+$(document).ready(function() {
+  $("#Date_search").val("");
+});
 
+var table = $('#minhatabela').DataTable( {
+  destroy: true,
+  deferRender:    true, 
+  autoWidth: false,     
+  "search": {
+    "regex": true,
+    "caseInsensitive": false,
+  },language: {
+      "sProcessing":     "Procesando...",
+                "sLengthMenu":     "Mostrar _MENU_ registros",
+                "sZeroRecords":    "No se encontraron Proyectos",
+                "sEmptyTable":     "Ningún dato disponible en esta tabla :(",
+                "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+                "sInfoPostFix":    "",
+                "sSearch":         "Buscar:",
+                "sUrl":            "",
+                "sInfoThousands":  ",",
+                "sLoadingRecords": "Cargando...",
+                "oPaginate": {
+                    "sFirst":    "Primero",
+                    "sLast":     "Último",
+                    "sNext":     "Siguiente",
+                    "sPrevious": "Anterior"
+                },
+                "oAria": {
+                    "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                },
+                "buttons": {
+                    "copy": "Copiar",
+                    "colvis": "Visibilidad"
+                },              
+},});
     </script>
 </body>
 </html>

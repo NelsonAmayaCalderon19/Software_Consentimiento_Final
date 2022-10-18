@@ -14,8 +14,8 @@ class Consentimiento extends conexion{
         $this->conexion = $this->conexion->connect();
     }
     public function Guardar_Consentimiento($codigo,$descripcion,$ruta_archivo){
-        $consulta = "INSERT INTO consentimiento(codigo,descripcion,ruta_archivo) 
-        VALUES(:codigo,:descripcion,:ruta_archivo)";
+        $consulta = "INSERT INTO consentimiento(codigo,descripcion,ruta_archivo,id_estado) 
+        VALUES(:codigo,:descripcion,:ruta_archivo,:id_estado)";
         
     $sql = $this->conexion->prepare($consulta);
     
@@ -24,7 +24,7 @@ class Consentimiento extends conexion{
     $sql->bindValue(':codigo',$codigo);
     $sql->bindValue(':descripcion',$descripcion);
     $sql->bindValue(':ruta_archivo',$ruta_archivo);
-     
+    $sql->bindValue(':id_estado',"1");
     $sql->execute();
     return $sql;
     }

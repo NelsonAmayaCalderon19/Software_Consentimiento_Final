@@ -27,12 +27,13 @@ endforeach;
     }
 
     public function Crear_Examen($descripcion){
-        $consulta = "INSERT INTO examen(descripcion) 
-    VALUES(:descripcion)";
+        $consulta = "INSERT INTO examen(descripcion,id_estado) 
+    VALUES(:descripcion,:id_estado)";
         
     $sql = $this->conexion->prepare($consulta);
     
     $sql->bindValue(':descripcion',$descripcion);
+    $sql->bindValue(':id_estado',"1");
     $sql->execute();
     return $this->conexion->lastInsertId();
     }
