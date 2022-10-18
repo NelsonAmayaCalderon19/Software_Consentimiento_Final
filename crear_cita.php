@@ -138,7 +138,7 @@ $conexion = $conexion->connect();
   </div>
     <input type="text" class="form-control" value="" name="hora" id="validationCustomNombre" aria-describedby="basic-addon3" >
 </div>
-<?php $consul_cargo = "SELECT * FROM examen";?>
+<?php $consul_cargo = "SELECT * FROM examen where id_estado=1";?>
 <label for="validationCustomSelect">Examen <span style="color:red;"> (*)</span></label>
      <div class="input-group mb-3">
   <div class="input-group-prepend">
@@ -163,7 +163,7 @@ $conexion = $conexion->connect();
                         <option value="Primera Vez">Primera Vez</option>         
   </select>
 </div>
-<?php $consul_cargo = "SELECT * FROM profesional where id_cargo=1";?>
+<?php $consul_cargo = "SELECT * FROM profesional where id_estado=1 and id_cargo=1";?>
 <label for="validationCustomSelect">Medico <span style="color:red;"> (*)</span></label>
      <div class="input-group mb-3">
   <div class="input-group-prepend">
