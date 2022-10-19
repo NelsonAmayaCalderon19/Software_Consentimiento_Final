@@ -11,7 +11,7 @@
 
     <title>Consent_Gastro</title>
     <?php
-  if (!isset($_SESSION["usuario"])) {
+  if (!isset($_SESSION["usuario"])){
     header("location:index.php");
   }
   ?>
@@ -27,7 +27,14 @@
 <div class="container-fluid col-11 mx-auto" style="margin-top: 65px;">
 <div class="row">
               <div class="row col-sm-12 text-left mb-3 d-flex">
-              <div class="col-sm-10 text-secondary"><h4>Agenda del Dia: <?php $fechaActual = date('d-m-Y'); echo $fechaActual?> </h4></div>
+              <?php 
+include_once 'Conexion/Conexion.php';
+
+$conexion = new conexion();
+$conexion = $conexion->connect(); 
+$consulta = "SELECT COUNT(id_cita) AS cantidad_total FROM cita WHERE id_estado=3 and fecha = CURDATE();";
+?>
+              <div class="col-sm-10 text-secondary"><h4>Agenda del Dia: <?php $fechaActual = date('d-m-Y'); echo $fechaActual?> -> Citas Pendientes: <?php foreach ($conexion->query($consulta) as $row){ echo $row['cantidad_total']; } ?></h4></div>
               <div class="col-sm-2 text-right">
                   <a class="btn btn-primary" href="crear_cita.php">Crear Cita</a>
               </div> 

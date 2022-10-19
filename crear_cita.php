@@ -66,7 +66,6 @@ $conexion = $conexion->connect();
       <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-address-card"></i></label>
   </div>
          <select class="custom-select" id="validationCustomSelect" name="selecttipodocumento" aria-describedby="inputGroupPrepend" required>
-                    
                         <option value="Cedula de Ciudadania">Cedula de Ciudadania</option>
                         <option value="Cedula de Extranjeria">Cedula de Extranjeria</option>  
                         <option value="Permiso Especial de Permanencia">Permiso Especial de Permanencia</option>   
