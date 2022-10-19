@@ -1,6 +1,4 @@
 <?php
-//include_once "conexion/conexion.php";
-
 class Consentimiento extends conexion{
 
     private $codigo;
