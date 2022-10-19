@@ -49,7 +49,7 @@ if(filter_input(INPUT_POST, 'btnCargar')){
         echo "<br>";*/
         //$fecha = "CURDATE() + INTERVAL 1 DAY";
         $cod_examen= $cita->Consultar_Cod_Examen($datos[17]);
-        $cod = $cita->Guardar_Cita($datos[1],$datos[0],$datos[2],$datos[3],$datos[6],$datos[7],$datos[8],$datos[9],$datos[10],$datos[14],$datos[11],$datos[16],$cod_examen,$datos[19],"3");
+        $cod = $cita->Guardar_Cita($datos[1],$datos[0],$datos[2],$datos[3],$datos[6],$datos[7],$datos[8],$datos[9],$datos[10],$datos[14],$datos[11],$datos[16],$cod_examen,$datos[19],"3",$datos[15]);
         $sq="SELECT * FROM consent_examen as exam WHERE exam.cod_examen= :id";
         $result=$conexion->prepare($sq);
         $result->execute(array(

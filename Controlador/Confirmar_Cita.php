@@ -28,8 +28,9 @@ $cita = new Cita();
         $medico = $_POST["selectmedico"];
         $consultorio = $_POST["selectconsultorio"];
         $sede = $_POST["selectsede"];
+        $esquema_clinico = $_POST["selectesquema"];
 
-        $cod = $cita->Guardar_Cita_Extraordinaria($nombre,$apellido,$documento,$tipo_documento,$edad,$afiliacion,$aseguradora,$regimen,$sexo,$fecha,$hora,$medico,$consultorio,$tipoexamen,$examen,$sede,"3");
+        $cod = $cita->Guardar_Cita_Extraordinaria($nombre,$apellido,$documento,$tipo_documento,$edad,$afiliacion,$aseguradora,$regimen,$sexo,$fecha,$hora,$medico,$consultorio,$tipoexamen,$examen,$sede,"3",$esquema_clinico);
         $sq="SELECT * FROM consent_examen as exam WHERE exam.cod_examen= :id";
         $result=$conexion->prepare($sq);
         $result->execute(array(

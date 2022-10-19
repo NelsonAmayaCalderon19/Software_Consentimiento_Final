@@ -198,6 +198,18 @@ $conexion = $conexion->connect();
                         <option value="Otra">Otra</option>        
   </select>
          </div>
+         <label for="validationCustomSelect">Esquema Clínico <span style="color:red;">(*)</span></label>
+
+     <div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-hospital-o"></i></label>
+  </div>
+         <select class="custom-select" id="validationCustomSelect" name="selectesquema" aria-describedby="inputGroupPrepend" required>
+                        <option value="">Seleccione</option>
+                        <option value="No">No</option>
+                        <option value="Si">Si</option>
+                    </select>
+</div>
          <div class="col-12 text-center justify-content-center row">
 
 <input class="btn btn-success btn-acepta" type="submit" name="btnAcepta" value="Confirmar" /> 
