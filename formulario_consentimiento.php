@@ -477,7 +477,7 @@ Firma Paciente o Representante Legal
   <div class="input-group-prepend">
       <span class="input-group-text" id="basic-addon3"><i class="fa fa-phone"></i></span>
   </div>
-    <input type="text" class="form-control" value="" name="telefono" id="validationCustomNombre" aria-describedby="basic-addon3" >
+    <input type="text" class="form-control" value="" name="telefono" id="validationCustomNombre" aria-describedby="basic-addon3" onkeypress="return valideKey(event);">
 </div>
 <label for="validationCustomSelect">Sexo del Paciente <span style="color:red;">(*)</span></label>
      <div class="input-group mb-3">
@@ -972,6 +972,7 @@ Firma Paciente o Representante Legal
    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>   
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script>
 
 $(document).ready(function() {
@@ -980,6 +981,24 @@ $(document).ready(function() {
       $("#success-alert").slideUp(500);
     });
       });
+
+     $(".custom-select option").each(function() {
+  $(this).siblings('[value="'+ this.value +'"]').remove();
+});
+
+function valideKey(evt){
+    
+    // code is the decimal ASCII representation of the pressed key.
+    var code = (evt.which) ? evt.which : evt.keyCode;
+    
+    if(code==8) { // backspace.
+      return true;
+    } else if(code>=48 && code<=57) { // is a number.
+      return true;
+    } else{ // other keys.
+      return false;
+    }
+}
 
       function mostrar(dato) {
         

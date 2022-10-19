@@ -322,6 +322,6 @@ if($validarConsentCita=="0"){
 $consentimiento->Actualizar_Estado_Cita($id_cita);
 }
       header("location:../ver_consentimientos.php"  . "?id_cita=" . $id_cita ."&cod_examen=" . $cod_examen ."&historial=false");
-    
+      unlink('../formatos/Plantilla/'. $ruta);
     }
 ?>
