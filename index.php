@@ -56,14 +56,10 @@
                     <h6>¡Credenciales Incorrectas!</h6>
                 <?php endif; ?>
             </div>
-					<div class="flex-sb-m w-full p-t-3 p-b-32">
-						<div class="contact100-form-checkbox">
-							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							<label class="label-checkbox100" for="ckb1">
-								Remember me
-							</label>
-						</div>
-
+					<div class="flex-sb-m w-full p-t-3 p-b-15">		
+					<div>
+							
+						</div>			
 						<div>
 							<a href="#" class="txt1">
 								Forgot Password?
@@ -77,24 +73,14 @@
 							Login
 						</button>
 					</div>
-					
-					<div class="text-center p-t-46 p-b-20">
-						<span class="txt2">
-							or sign up using
-						</span>
-					</div>
-
-					<div class="login100-form-social flex-c-m">
-						<a href="#" class="login100-form-social-item flex-c-m bg1 m-r-5">
-							<i class="fa fa-facebook-f" aria-hidden="true"></i>
-						</a>
-
-						<a href="#" class="login100-form-social-item flex-c-m bg2 m-r-5">
-							<i class="fa fa-twitter" aria-hidden="true"></i>
-						</a>
+					<div class="flex-sb-m w-full p-t-10 p-b-5">
+					<div>
+							<a href="administracion/index.php" class="txt1">
+								Iniciar Sesión como Administrador
+							</a>
+						</div>
 					</div>
 				</form>
-
 				<div class="login100-more" style="background-image: url('images/bg-01.jpg');">
 				</div>
 			</div>
