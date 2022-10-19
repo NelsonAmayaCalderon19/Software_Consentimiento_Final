@@ -6,14 +6,14 @@
   ?>
 <?php
 include_once '../Conexion/Conexion.php'; 
-include_once '../modelo/Cita.php';
+include_once '../modelDao/CitaDao.php';
 include_once '../modelo/Consentimiento.php';
 include_once '../js/script_sweet.js';
 
 
 $conexion = new conexion();
 $conexion = $conexion->connect();
-$cita = new Cita();
+$cita = new CitaDao();
 $consent = new Consentimiento();
 $cod_examen;
 if(filter_input(INPUT_POST, 'btnCargar')){

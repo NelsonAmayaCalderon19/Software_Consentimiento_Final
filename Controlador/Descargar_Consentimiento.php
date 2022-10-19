@@ -7,9 +7,9 @@
 <?php 
       include_once '../Conexion/Conexion.php';
       include_once '../modelo/Consentimiento.php';
-      include_once '../modelo/Cita.php';
+      include_once '../modelDao/CitaDao.php';
       $consentimiento = new Consentimiento();
-      $cita = new Cita();
+      $cita = new CitaDao();
     
 $id_cita = $_GET["id_cita"];
 $id_consentimiento = $_GET["cod_consentimiento"];

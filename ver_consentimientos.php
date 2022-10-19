@@ -30,8 +30,8 @@
 <?php include "includes/header.php";?>
 <?php 
 include_once 'Conexion/Conexion.php';
-include_once 'modelo/Cita.php';
-$citam = new Cita(); 
+include_once 'modelDao/CitaDao.php';
+$citam = new CitaDao(); 
 $id_cita = $_GET["id_cita"];
 $cod_examen = $_GET["cod_examen"];
 $historial = $_GET["historial"];
@@ -144,12 +144,6 @@ $conexion = new conexion();
 $conexion = $conexion->connect(); 
 $consulta = "SELECT * FROM cita_consent where id_cita = $id_cita";
 
-     
-
-
-//include 'modelo/Cita.php';
-//cita = new Cita();
-//$res = $cita->Listar_Agenda();
 ?>
             <table id="minhatabela" class="display responsive table table-striped table-bordered table-hover" cellspacing="0" width="100%">
                 <br>

@@ -29,10 +29,10 @@
               <div class="row col-sm-12 text-left mb-3 d-flex">
               <?php 
 include_once 'Conexion/Conexion.php';
-include_once 'modelo/Cita.php';
+include_once 'modelDao/CitaDao.php';
 $conexion = new conexion();
 $conexion = $conexion->connect(); 
-$cita = new Cita();
+$cita = new CitaDao();
 $consulta = $cita->listar_citas_Pendientes();
 ?>
               <div class="col-sm-10 text-secondary"><h4>Agenda del Dia: <?php $fechaActual = date('d-m-Y'); echo $fechaActual?> -> Citas Pendientes: <?php echo $consulta['cantidad_total'];?></h4></div>

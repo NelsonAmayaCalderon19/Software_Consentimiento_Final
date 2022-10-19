@@ -29,11 +29,11 @@
     <body>
       <?php 
       include_once 'Conexion/Conexion.php'; 
-      include_once 'modelo/Cita.php';
+      include_once 'modelDao/CitaDao.php';
       include_once 'modelo/Profesional.php';
       include_once 'modelo/Examen.php';
       
-      $cita = new Cita();
+      $cita = new CitaDao();
       $prof = new Profesional();
       $examen = new Examen();
       $id_cita = $_GET["id_cita"];

@@ -6,11 +6,11 @@
   ?>
   <?php 
       include_once '../Conexion/Conexion.php';
-      include_once '../modelo/Cita.php';
+      include_once '../modelDao/CitaDao.php';
 include_once '../js/script_sweet.js';
       $conexion = new conexion();
 $conexion = $conexion->connect();
-$cita = new Cita();
+$cita = new CitaDao();
       if(filter_input(INPUT_POST, 'btnAcepta')){
         $nombre = $_POST['nombres_paciente'];
         $apellido = $_POST['apellidos_paciente'];

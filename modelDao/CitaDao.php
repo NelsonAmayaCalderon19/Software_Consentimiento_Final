@@ -1,5 +1,4 @@
 <?php
-include_once '../modelo/Cita.php';
 class CitaDao{
     private $result_mes = "";
     private $posicion = 0;
@@ -49,7 +48,7 @@ VALUES(:nombre_p,:apellido_p,:documento,:edad,:afiliacion,:aseguradora,:regimen,
     
 $sql = $this->conexion->prepare($consulta);
 
-$sub_fech = Cita::Validar_Fecha($fecha);
+$sub_fech = CitaDao::Validar_Fecha($fecha);
 
 $sql->bindValue(':nombre_p',$nombre_p);
 $sql->bindValue(':apellido_p',$apellido_p);
@@ -67,6 +66,25 @@ $sql->bindValue(':cod_examen',$cod_examen);
 $sql->bindValue(':sede',$sede);
 $sql->bindValue(':id_estado',$id_estado); 
 $sql->bindValue(':esquema_clinico',$esquema_clinico); 
+
+/*$sub_fech = Cita::Validar_Fecha($datos->getFecha());
+
+$sql->bindValue(':nombre_p',$datos->getNombre_paciente());
+$sql->bindValue(':apellido_p',$datos->getApellido_paciente());
+$sql->bindValue(':documento',$datos->getDocumento());
+$sql->bindValue(':edad',$datos->getEdad());
+$sql->bindValue(':afiliacion',$datos->getPlan_afiliacion());
+$sql->bindValue(':aseguradora',$datos->getAseguradora());
+$sql->bindValue(':regimen',$datos->getRegimen());
+$sql->bindValue(':fecha',$sub_fech);
+$sql->bindValue(':hora',$datos->getHora());
+$sql->bindValue(':ced_medico',$datos->getCed_medico());
+$sql->bindValue(':consultorio',$datos->getConsultorio());
+$sql->bindValue(':tipo_examen',$datos->getTipo_examen());
+$sql->bindValue(':cod_examen',$datos->getCod_examen());
+$sql->bindValue(':sede',$datos->getSede());
+$sql->bindValue(':esquema_clinico',$datos->getEsquema_clinico());
+$sql->bindValue(':id_estado',$datos->getId_estado()); */
 $sql->execute();
 return $this->conexion->lastInsertId();
 }
@@ -278,5 +296,6 @@ public function listar_citas_Pendientes(){
         return false;
     }
 
+}
 }
 ?>

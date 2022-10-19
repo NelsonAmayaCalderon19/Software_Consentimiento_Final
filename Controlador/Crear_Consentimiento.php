@@ -8,11 +8,11 @@
       include_once '../Conexion/Conexion.php';
       include_once '../modelo/Consentimiento.php';
       include_once '../modelo/Profesional.php';
-      include_once '../modelo/Cita.php';
+      include_once '../modelDao/CitaDao.php';
       require_once dirname(__FILE__).'/PHPWord-develop/src/PhpWord/Autoloader.php';
       $consentimiento = new Consentimiento();
       $profesional = new Profesional();
-      $cita = new Cita();
+      $cita = new CitaDao();
       \PhpOffice\PhpWord\Autoloader::register();
 
 use PhpOffice\PhpWord\TemplateProcessor;
