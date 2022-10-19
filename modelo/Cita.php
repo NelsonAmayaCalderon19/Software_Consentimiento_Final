@@ -150,6 +150,10 @@ foreach($results as $fila):
         $cont++;
         $dir[$cont] = $fila["id_estado"];
         $cont++;
+        $dir[$cont] = $fila["tipo_documento"];
+        $cont++;
+        $dir[$cont] = $fila["sexo"];
+        $cont++;
 endforeach;
 return $dir;
 }
@@ -225,6 +229,17 @@ public function Cita_No_Asistida($id_cita){
     $result=$this->conexion->prepare($sq);
     $result->execute(array(
         ':id_cit' =>"".$id_cita.""
+      ));
+      return $result->rowCount();
+}
+
+public function Actualizar_Cita_($id_cita,$tipo_documento,$sexo){
+    $sq ="UPDATE cita SET tipo_documento=:tipo_documento, sexo=:sexo WHERE id_cita= :id_cita";
+    $result=$this->conexion->prepare($sq);
+    $result->execute(array(
+        ':tipo_documento' =>"".$tipo_documento."",
+        ':sexo' =>"".$sexo."",
+        ':id_cita' =>"".$id_cita."",
       ));
       return $result->rowCount();
 }

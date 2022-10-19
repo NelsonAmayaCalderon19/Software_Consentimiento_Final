@@ -84,6 +84,14 @@ $consulta = "SELECT * FROM consentimiento_detalle where cod_consentimiento = '$i
     <input type="text" class="form-control" value="<?php echo $datos[2]; ?>" name="apellido_paciente" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 <label for="validationCustomSelect">Tipo de Documento <span style="color:red;">(*)</span></label>
+<?php $tipo_doc =$datos[17]; if($tipo_doc!=""){ ?>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+  </div>
+    <input type="text" class="form-control" value="<?php echo $datos[17]; ?>" name="selecttipodocumento" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
+</div>
+<?php }else{?>
      <div class="input-group mb-3">
   <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-address-card"></i></label>
@@ -98,6 +106,7 @@ $consulta = "SELECT * FROM consentimiento_detalle where cod_consentimiento = '$i
                         <option value="Pasaporte">Pasaporte</option>       
   </select>
 </div>
+<?php }?>
 <label for="validationCustomNombre">Documento <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
@@ -127,6 +136,14 @@ $consulta = "SELECT * FROM consentimiento_detalle where cod_consentimiento = '$i
     <input type="text" class="form-control" value="<?php echo $datos[4]; ?>" name="edad" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
 </div>
 <label for="validationCustomSelect">Sexo del Paciente <span style="color:red;">(*)</span></label>
+<?php $sex =$datos[18]; if($sex!=""){ ?>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+  </div>
+    <input type="text" class="form-control" value="<?php echo $datos[18]; ?>" name="selectsexo" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
+</div>
+<?php }else{?>
      <div class="input-group mb-3">
   <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-address-card"></i></label>
@@ -138,6 +155,7 @@ $consulta = "SELECT * FROM consentimiento_detalle where cod_consentimiento = '$i
                         <option value="Otro / No Responde">Otro / No Responde</option>         
   </select>
 </div>
+<?php }?>
 <label for="validationCustomNombre">Fecha <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
@@ -480,6 +498,14 @@ Firma Paciente o Representante Legal
     <input type="text" class="form-control" value="" name="telefono" id="validationCustomNombre" aria-describedby="basic-addon3" onkeypress="return valideKey(event);">
 </div>
 <label for="validationCustomSelect">Sexo del Paciente <span style="color:red;">(*)</span></label>
+<?php $sexx =$datos[18]; if($sexx!=""){ ?>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon3"><i class="fa fa-user"></i></span>
+  </div>
+    <input type="text" class="form-control" value="<?php echo $datos[18]; ?>" name="selectsexo" id="validationCustomNombre" aria-describedby="basic-addon3" readonly="">
+</div>
+<?php }else{?>
      <div class="input-group mb-3">
   <div class="input-group-prepend">
       <label class="input-group-text" for="inputGroupSelect01"><i class="fa fa-address-card"></i></label>
@@ -491,6 +517,7 @@ Firma Paciente o Representante Legal
                         <option value="Otro / No Responde">Otro / No Responde</option>         
   </select>
 </div>
+<?php }?>
 <label for="validationCustomNombre">Edad <span style="color:red;">(*)</span></label>
 <div class="input-group mb-3">
   <div class="input-group-prepend">

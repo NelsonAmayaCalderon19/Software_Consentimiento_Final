@@ -8,9 +8,11 @@
       include_once '../Conexion/Conexion.php';
       include_once '../modelo/Consentimiento.php';
       include_once '../modelo/Profesional.php';
+      include_once '../modelo/Cita.php';
       require_once dirname(__FILE__).'/PHPWord-develop/src/PhpWord/Autoloader.php';
       $consentimiento = new Consentimiento();
       $profesional = new Profesional();
+      $cita = new Cita();
       \PhpOffice\PhpWord\Autoloader::register();
 
 use PhpOffice\PhpWord\TemplateProcessor;
@@ -34,6 +36,7 @@ $templateWord = new TemplateProcessor('../formatos/' . $ruta);
         $regimen = $_POST["regimen"];
         $edad = $_POST["edad"];
         $selectsexo = $_POST["selectsexo"];
+        $cita->Actualizar_Cita_($id_cita,$tipo_documento,$selectsexo);
         $fecha = $_POST["fecha"];
         $hora = $_POST["hora"];
         $selectprofesional = $_POST["selectprofesional"];
